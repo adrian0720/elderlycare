@@ -42,7 +42,7 @@ function isValidEmail(email) {
 document.addEventListener('DOMContentLoaded', function () {
     if (sessionStorage.getItem('isLoggedIn')) {
         // User is logged in, redirect to the dashboard
-        window.location.href = 'dashboard/dashboard.html'; // Adjust to your actual dashboard path
+        window.location.href = '/dashboard/dashboard.html'; // Adjust to your actual dashboard path
     }
 });
 
