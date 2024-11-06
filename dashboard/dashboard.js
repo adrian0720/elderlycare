@@ -62,7 +62,6 @@ function toggleCategory(formId) {
     form.style.display = (form.style.display === "none" || form.style.display === "") ? "block" : "none";
 }
 
-
 // Select the elements
 const informationSection = document.getElementById('Information');
 const contentSection = document.getElementById('content');
@@ -79,8 +78,9 @@ function toggleInformation() {
         informationSection.style.display = 'block';
         contentSection.style.display = 'none';
     } else {
-        // If it's already displayed, just keep it displayed
-        contentSection.style.display = 'none'; // Hide content if needed
+        // Hide the information section and show the content section
+        informationSection.style.display = 'none';
+        contentSection.style.display = 'block';
     }
 }
 
