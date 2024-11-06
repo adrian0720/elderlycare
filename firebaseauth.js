@@ -1,11 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    sendPasswordResetEmail
-} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
-import { getFirestore, setDoc, doc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -19,7 +13,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth();
 const db = getFirestore();
 
 // Show message function
@@ -38,14 +31,6 @@ function isValidEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
 }
-// Check authentication state on page load
-document.addEventListener('DOMContentLoaded', function () {
-    if (sessionStorage.getItem('isLoggedIn')) {
-        // User is logged in, redirect to the dashboard
-        window.location.href = '/dashboard/dashboard.html'; // Adjust to your actual dashboard path
-    }
-});
-
 
 // Handle Sign Up
 document.getElementById('registersubmit').addEventListener('click', async (event) => {
@@ -53,11 +38,8 @@ document.getElementById('registersubmit').addEventListener('click', async (event
 
     // Get form values
     let email = document.getElementById('register-email').value.trim();
-    let password = document.getElementById('register-password').value;
     let firstName = document.getElementById('firstname').value.trim();
     let lastName = document.getElementById('lastname').value.trim();
-    let securityQuestion = document.getElementById('security-question').value;
-    let securityAnswer = document.getElementById('security-answer').value.trim();
 
     // Validate inputs
     if (!isValidEmail(email)) {
@@ -68,39 +50,24 @@ document.getElementById('registersubmit').addEventListener('click', async (event
         showMessage('Please enter your First Name and Last Name.', 'signUpMessage');
         return;
     }
-    if (securityQuestion === '' || securityAnswer === '') {
-        showMessage('Please select a security question and provide an answer.', 'signUpMessage');
-        return;
-    }
 
-    // Hash the security answer
-    const hashedAnswer = CryptoJS.SHA256(securityAnswer).toString();
-
-    // Create user with Firebase Auth and store data in Firestore
+    // Store user data in Firestore under "users" collection
     try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
         const userData = {
             email,
             firstName,
-            lastName,
-            securityQuestion,
-            securityAnswer: hashedAnswer // Store hashed answer
+            lastName
         };
 
-        // Store user data in Firestore under "users" collection
-        await setDoc(doc(db, "users", user.uid), userData);
+        // Generate a new document ID for the user in the "users" collection
+        const userDocRef = doc(collection(db, "users"));
+        await setDoc(userDocRef, userData);
 
         showMessage('Account Created Successfully', 'signUpMessage');
         showForm('login-form-container'); // Switch to login form
 
     } catch (error) {
-        const errorCode = error.code;
-        if (errorCode === 'auth/email-already-in-use') {
-            showMessage('Email Address Already Exists!', 'signUpMessage');
-        } else {
-            showMessage(`Unable to create User: ${error.message}`, 'signUpMessage');
-        }
+        showMessage(`Unable to create User: ${error.message}`, 'signUpMessage');
     }
 });
 

@@ -52,7 +52,7 @@ document.getElementById('logoutBtn').addEventListener('click', function (event) 
 document.addEventListener('DOMContentLoaded', function () {
     if (!sessionStorage.getItem('isLoggedIn')) {
         // User is not logged in, redirect to the login page
-        window.location.href = '/website/index.html'; // Adjust the path to your login page
+        window.location.href = '/index.html'; // Adjust the path to your login page
     }
 });
 
