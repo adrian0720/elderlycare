@@ -73,7 +73,6 @@ document.getElementById('registersubmit').addEventListener('click', async (event
 
 
 
-
   // Handle Sign In
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('loginsubmit').addEventListener('click', (event) => {
