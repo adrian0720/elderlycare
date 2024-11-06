@@ -7,13 +7,11 @@
     passwordField.type = passwordField.type === 'password' ? 'text' : 'password';
     toggleLoginPassword.src = passwordField.type === 'password' ? 'hide.jpg' : 'unhide.jpg';
   });
-
   toggleRegisterPassword.addEventListener('click', function() {
     const passwordField = document.getElementById('register-password');
     passwordField.type = passwordField.type === 'password' ? 'text' : 'password';
     toggleRegisterPassword.src = passwordField.type === 'password' ? 'hide.jpg' : 'unhide.jpg';
   });
-
   // Initialize to login form
   showForm('login-form-container');
 
