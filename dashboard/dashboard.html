@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' href='https://unpkg.com/boxicons@latest/css/boxicons.min.css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="info.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="edit.js"></script>
+  <script type="module" src="dashboard.js"></script>
+
+  <title>Elderly Care Assistance</title>
+</head>
+  <body>
+    <section id="sidebar">
+        <a href="#" class="brand">
+            <i class='bx bx-health'></i>
+            <span class="text">Elderly Health Monitoring</span>
+        </a>
+        <ul class="side-menu top">
+            <li id="dashboardLink" class="active">
+                <a href="#">
+                    <i class="bx bxs-dashboard"></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li id="medicalRecordsLink">
+                <a href="#">
+                    <i class="bx bxs-file"></i>
+                    <span class="text">Personal Information</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" id="aboutLink">
+                    <i class='bx bx-message-error'></i>
+                    <span class="text">About Us</span>
+                </a>
+            </li>
+            <li>
+                <a href="/website/index.html" id="logoutBtn" class="logout">
+                    <i class='bx bx-log-out-circle'></i>
+                    <span class="text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <section id="content">
+        <nav>
+            <i class='bx bx-menu'></i>
+            <a href="#" class="nav-link">Categories</a>
+            <form action="#" method="get">
+                <div class="form-input">
+                    
+                </div>
+            </form>
+            <input type="checkbox" id="switch-mode" hidden>
+            <div id="email-display">
+                <h3><span id="displayEmail"></span></h3>
+            </div>
+            <a href="#" class="profile">
+                <img src="img/adrian.jpg" alt="Profile Picture">
+            </a>
+            </nav>
+            <main id="main-content">
+            <div class="head-title">
+                <div class="left">
+                    <h2>Health Monitoring</h2>
+                    <button id="feedbackBtn">Feedback</button>
+                </div>
+            </div>
+            <div id="popupForm" class="popup">
+                <div class="popup-content">
+                    <span class="close-btn">&times;</span>
+                    <h2>Feedback Form</h2>
+                    <form id="feedbackForm">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+            
+                        <label for="feedback">Feedback:</label>
+                        <textarea id="feedback" name="feedback" rows="4" required></textarea>
+            
+                        <!-- Star Rating Section -->
+                        <label for="rating">Rating:</label>
+                        <div id="starRating" class="star-rating">
+                            <span class="star" data-value="1">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="5">&#9733;</span>
+                        </div>
+            
+                        <p id="errorMessage" style="color: red; display: none;">An error occurred. Please try again.</p>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+                        <ul class="box-info">
+                <li>
+                    <i class="fas fa-user"></i>
+                    <span class="text">
+                        <h3 id="documentId" style="font-weight: bold; color: black;"></h3>
+                        <p style="font-weight: bold; color: black;">ID Number</p>
+                        <div id="signInMessage" style="font-weight: bold; color: red;"></div>
+                    </span>                                    
+                </li>
+                <li>
+                    <i class="fas fa-heart"></i>
+                    <span class="text">
+                        <h3 style="font-weight: bold; color: black;">89</h3>
+                        <p style="font-weight: bold; color: black;">Heart Rate</p>
+                    </span>
+                </li>
+                <li>
+                    <i class="fas fa-wind"></i>
+                    <span class="text">
+                        <h3 style="font-weight: bold; color: black;">87</h3>
+                        <p style="font-weight: bold; color: black;">Oxygen Level</p>
+                    </span>
+                </li>
+            </ul>
+            <div class="graph-container">
+                <h2>WEEKDAYS MONITORING</h2>
+                <div class="bar-graph">
+                    <div class="bar" style="--bar-value: 0.5;" data-label="Mon"></div>
+                    <div class="bar" style="--bar-value: 0.7;" data-label="Tue"></div>
+                    <div class="bar" style="--bar-value: 0.4;" data-label="Wed"></div>
+                    <div class="bar" style="--bar-value: 0.6;" data-label="Thu"></div>
+                    <div class="bar" style="--bar-value: 0.8;" data-label="Fri"></div>
+                </div>
+            </div>
+        </main>
+    </section>
+
+
+    <section id="medical-records" style="display: none;">
+        <h2>Personal Records</h2>
+        <div class="records-and-info">
+            <div class="info-and-history">
+                <div class="additional-info">
+                    <h3>Patient Information</h3>
+                    <p><strong>Document ID:</strong> <span id="documentId">12345</span></p>
+                    <p><strong>Email:</strong> <span id="emailDisplay">john.doe@example.com</span></p> <!-- Change id to emailDisplay -->
+                    <p><strong>First Name:</strong> <span id="firstName">John</span></p>
+                    <p><strong>Last Name:</strong> <span id="lastName">Doe</span></p>
+                    <p><strong>Age:</strong> <span id="age">30</span></p>
+                    <p><strong>Height:</strong> <span id="height">5'9"</span></p>
+                    <p><strong>Weight lb:</strong> <span id="weight">160</span></p>
+                    <p><strong>Sex:</strong> <span id="sex">Male</span></p>
+                    <p><strong>Condition:</strong> <span id="condition">Healthy</span></p>
+                    <p><strong>Contact:</strong> <span id="contact">+1234567890</span></p>
+                    <p><strong>Guardian:</strong> <span id="guardian">Jane Doe</span></p>
+                    <p><strong>Relationship:</strong> <span id="relationship">Spouse</span></p>
+                    <button id="editButton">Edit</button>
+                </div>
+                
+                
+                <div class="medical-history">
+                    <h3>Medical History</h3>
+                    <div class="record">
+                        <h4>Record 1</h4>
+                        <p>Description of the first medical history entry.</p>
+                    </div>
+                    <div class="record">
+                        <h4>Record 2</h4>
+                        <p>Description of the second medical history entry.</p>
+                    </div>
+                    <div class="record">
+                        <h4>Record 3</h4>
+                        <p>Description of the third medical history entry.</p>
+                    </div>
+                    <button id="Addinfo">Add</button>
+                </div>
+                
+                <div id="modalinfo" class="modal" style="display:none;">
+                    <div class="modal-content">
+                        <span class="close" id="closeModal">&times;</span>
+                        <h3>Add Medical History</h3>
+                        <form id="medicalHistoryForm">
+                            <label for="recordDate">Date:</label>
+                            <input type="date" id="recordDate" required>
+                            <label for="recordDescription">Record Description:</label>
+                            <textarea id="recordDescription" rows="4" required></textarea>
+                            <button type="submit">Save Record</button>
+                        </form>
+                    </div>
+                </div>
+                
+
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <span id="closeModalTop" class="close">&times;</span>
+
+        <h3>Edit Patient Information</h3>
+        <form id="editForm">
+            <label for="editFirstName">First Name:</label>
+            <input type="text" id="editFirstName" value="John">
+            <label for="editLastName">Last Name:</label>
+            <input type="text" id="editLastName" value="Doe">
+            <label for="editAge">Age:</label>
+            <input type="number" id="editAge" value="30">
+            <label for="editHeight">Height:</label>
+            <input type="text" id="editHeight" value="5'9\"">
+            <label for="editWeight">Weight:</label>
+            <input type="text" id="editWeight" value="160">             
+            <label for="editSex">Sex:</label>
+            <input type="text" id="editSex" value="Male">
+            <label for="editCondition">Condition:</label>
+            <input type="text" id="editCondition" value="Healthy">
+            <label for="editContact">Contact:</label>
+            <input type="text" id="editContact" value="+1234567890">
+            <label for="editGuardian">Guardian:</label>
+            <input type="text" id="editGuardian" value="Jane Doe">
+            <label for="editRelationship">Relationship:</label>
+            <input type="text" id="editRelationship" value="Spouse">
+            <button type="submit">Save Changes</button>
+            <span id="closeModalBottom" class="close">x</span>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+    <div id="about-section" class="content-section">
+        <h1>About Us</h1>
+        <div class="content">
+            <p>
+                Our website is an integral part of our capstone project, designed to improve elderly care at Anawim. Our mission is to use cutting-edge technology to create solutions that enhance the safety, health, and overall well-being of elderly individuals. We believe that technology can play a vital role in transforming traditional care methods into more efficient and effective practices, providing our users with peace of mind and the highest level of support.
+            </p>
+            <p>
+                Our dedicated team comprises experts from various fields who are passionate about making a positive impact. Cedrick Abad, our ESP Programmer, is responsible for integrating the ESP32 hardware components, allowing real-time monitoring and data collection. Jan Michael Sulit, our Website and Desktop Application Programmer, ensures the system’s seamless operation, creating a user-friendly interface that promotes accessibility and ease of use for both caregivers and elderly users.
+            </p>
+            <p>
+                Adrian Palmes, our MIT Programmer, focuses on implementing accurate algorithms and medical technology components that are essential for monitoring vital signs and other health indicators. With his expertise, we are able to provide reliable and precise data that caregivers and medical professionals can use to make informed decisions. Our Documentation Specialist, Nitzan Mariano, ensures that every step of our project is well-documented, from system designs to implementation processes, making it easier for future developments and evaluations.
+            </p>
+            <p>
+                Lenard Bengco, our Research Specialist, plays a crucial role in ensuring that our solutions are tailored to the unique needs of Anawim’s elderly community. By conducting thorough research on elderly care trends and technological advancements, Lenard helps our team align our project with the best practices and innovative solutions in the field. Together, our team's collaborative efforts and expertise are aimed at making a difference and contributing to the welfare of the elderly in our community.
+            </p>
+        </div>
+    </div>
+        <div id="logoutModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>Logout Confirmation</h2>
+                <p1>Are you sure you want to log out?</p1>
+                <button id="confirmLogoutBtn">Yes, log me out</button>
+                <button id="cancelLogoutBtn">Cancel</button>
+            </div>
+          </div>
+    <script src="dashboard.js"></script>
+    <script>
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const dashboardLink = document.getElementById('dashboardLink');
+    const medicalRecordsLink = document.getElementById('medicalRecordsLink');
+    const aboutLink = document.getElementById('aboutLink');
+    const mainContent = document.getElementById('main-content');
+    const medicalRecordsSection = document.getElementById('medical-records');
+    const aboutSection = document.getElementById('about-section');
+    // Show Dashboard (main-content) initially
+    mainContent.classList.add('show');
+    // Medical Records link click event
+    medicalRecordsLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        showSection(medicalRecordsSection);
+    });
+    // Dashboard link click event
+    dashboardLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        showSection(mainContent);
+    });
+    // About Us link click event
+    aboutLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        showSection(aboutSection);
+    });
+    function showSection(section) {
+        // Hide all sections
+        mainContent.classList.remove('show');
+        medicalRecordsSection.classList.remove('show');
+        aboutSection.classList.remove('show');
+        // Hide all sections first
+        mainContent.style.display = "none";
+        medicalRecordsSection.style.display = "none";
+        aboutSection.style.display = "none";
+        // Show the selected section
+        section.style.display = "block";
+        setTimeout(() => {
+            section.classList.add('show');
+            }, 10); // Slight delay to allow display change to take effect
+        }
+    });
+
+
+
+
+    // Get elements
+    const feedbackBtn = document.getElementById('feedbackBtn');
+    const popupForm = document.getElementById('popupForm');
+    const closeBtn = document.querySelector('.close-btn');
+    // Show popup when clicking the Feedback button
+    feedbackBtn.addEventListener('click', () => {
+        popupForm.style.display = 'flex';
+    });
+    // Hide popup when clicking the close button
+    closeBtn.addEventListener('click', () => {
+        popupForm.style.display = 'none';
+    });
+    // Hide popup when clicking outside the form
+    window.addEventListener('click', (event) => {
+        if (event.target === popupForm) {
+            popupForm.style.display = 'none';
+        }
+    });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const stars = document.querySelectorAll("#starRating .star");
+    let selectedRating = 0;
+
+    stars.forEach((star) => {
+        star.addEventListener("click", () => {
+            selectedRating = star.getAttribute("data-value");
+
+            // Update the selected stars
+            stars.forEach((s, index) => {
+                s.classList.toggle("selected", index < selectedRating);
+            });
+        });
+
+        star.addEventListener("mouseover", () => {
+            stars.forEach((s, index) => {
+                s.classList.toggle("selected", index < star.getAttribute("data-value"));
+            });
+        });
+
+        star.addEventListener("mouseout", () => {
+            stars.forEach((s, index) => {
+                s.classList.toggle("selected", index < selectedRating);
+            });
+        });
+    });
+
+    // You can access selectedRating when submitting the form
+    document.getElementById("feedbackForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        // Collect rating and other form data, then process submission
+        console.log("Selected Rating:", selectedRating);
+        // Add your form submission logic here
+    });
+});
+
+     </script> 
+  </body>
+</html>

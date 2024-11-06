@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel='stylesheet' href='https://unpkg.com/boxicons@latest/css/boxicons.min.css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="info.css">
+        <link rel="stylesheet" href="dashboard.css">
+        <script type="module" src="edit.js"></script>
+        <script type="module" src="firebase.js"></script>
+        <title>Elderly Care Assistance</title>
+      </head>
+  <body>
+
+    <section id="sidebar">
+        <a href="#" class="brand">
+            <i class='bx bx-health' ></i>
+            <span class="text">Elderly Health Monitoring</span>
+        </a>
+        <ul class="side-menu top">
+            <li id="dashboardLink" class="active">
+                <a href="#">
+                    <i class="bx bxs-dashboard"></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li id="medicalRecordsLink">
+                <a href="#">
+                    <i class="bx bxs-file"></i>
+                    <span class="text">Personal Information</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-history'></i>
+                    <span class="text">History</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-cog' ></i>
+                    <span class="text">Settings</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" id="aboutLink"> <!-- Added id "aboutLink" -->
+                    <i class='bx bx-message-error'></i>
+                    <span class="text">About Us</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/website/webiste.html" id="logoutBtn" class="logout">
+                    <i class='bx bx-log-out-circle' ></i>
+                    <span class="text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+
+    <section id="content">
+        <nav>
+            <i class='bx bx-menu'></i>
+            <a href="#" class="nav-link">Categories</a>
+            <form action="#" method="get">
+                <div class="form-input">
+                    <input type="search" placeholder="Search..." aria-label="Search">
+                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                </div>
+            </form>
+            <input type="checkbox" id="switch-mode" hidden>
+            <label for="switch-mode" class="switch-mode" aria-label="Toggle Dark Mode"></label>
+            <div id="email-display">
+                <h3><span id="displayEmail"></span></h3>
+            </div>
+            <a href="#" class="profile">
+                <img src="img/adrian.jpg" alt="Profile Picture">
+            </a>
+        </nav>
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1> Health Monitoring</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">Dashboard</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="#">Home</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="#" class="btn-download">
+                    <i class='bx bxs-cloud-download' ></i>
+                    <span class="text">Download PDF</span>
+                </a>
+            </div>
+
+            <ul class="box-info">
+                <li>
+                <i class='bx bx-user-pin' ></i>
+                    <span class="text">
+                        <h3>1</h3>
+                        <p>ID Number</p>
+                    </span>
+                </li>
+                <li>
+                    <i class='bx bx-heart-circle'></i>
+                    <span class="text">
+                        <h3>89</h3>
+                        <p>Heart Rate</p>
+                    </span>
+                </li>
+                <li>
+                <i class='bx bxs-donate-blood'></i>
+                    <span class="text">
+                        <h3>87</h3>
+                        <p>Blood Pressure</p>
+                    </span>
+                </li>
+            </ul>
+
+            <div class="graph-container">
+                        <h2>WEEKDAYS MONITORING</h2>
+                        <div class="bar-graph">
+                            <div class="bar" style="--bar-value: 0.5;" data-label="Mon"></div>
+                            <div class="bar" style="--bar-value: 0.7;" data-label="Tue"></div>
+                            <div class="bar" style="--bar-value: 0.4;" data-label="Wed"></div>
+                            <div class="bar" style="--bar-value: 0.6;" data-label="Thu"></div>
+                            <div class="bar" style="--bar-value: 0.8;" data-label="Fri"></div>
+                          </div>
+                    </div>
+
+
+        </main>
+    <script src="dashboard.js"></script>
+  </body>
+</html>
