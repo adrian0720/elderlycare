@@ -30,7 +30,6 @@
   </div>
 
   <div class="container">
-    
     <!-- Login Form -->
     <div class="form-container" id="login-form-container">
       <h1>Login</h1>
@@ -45,7 +44,6 @@
           <p class="register-link" onclick="showForm('signup-form-container')">Don't have an account? Create Account</p>
           <p class="register-link" onclick="showForm('forgot-password-form-container')" style="color: blue;">Forgot password?</p>
       </form>
-
     <!-- Signup Form -->
     <div class="form-container" id="signup-form-container" style="display:none">
       <h1>Register</h1>
@@ -54,16 +52,14 @@
         <input type="text" id="firstname" placeholder="First Name" required>
         <input type="text" id="lastname" placeholder="Last Name" required>
         <input type="email" id="register-email" placeholder="Email" required>
-        
         <div class="password-container">
-          <input type="password" id="register-password" placeholder="Password" required>
-          <img src="unhide.jpg" alt="Show Password" id="toggle-password" style="cursor:pointer;">
+        <input type="password" id="register-password" placeholder="Password" required>
+        <img src="unhide.jpg" alt="Show Password" id="toggle-password" style="cursor:pointer;">
         </div>
         <button type="submit" id="registersubmit">Register</button>
         <p class="register-link" onclick="showForm('login-form-container')">Already have an account? Log In</p>
       </form>
     </div>
-
   <!-- Forgot Password Form -->
 <div class="form-container" id="forgot-password-form-container" style="display:none">
   <h1>Forgot Password</h1>
@@ -77,15 +73,16 @@
   
 
   </div>
-
   <!-- JavaScript Function to Show Forms -->
   <script>
-    function showForm(formId) {
-      const forms = document.querySelectorAll('.form-container');
-      forms.forEach(form => {
-        form.style.display = (form.id === formId) ? 'block' : 'none';
-      });
-    }
+   function showForm(formId) {
+  const forms = document.querySelectorAll('.form-container');
+  forms.forEach(form => {
+    console.log(`Setting ${form.id} to ${(form.id === formId) ? 'block' : 'none'}`);
+    form.style.display = (form.id === formId) ? 'block' : 'none';
+  });
+}
+
   </script>
 </body>
 </html>
