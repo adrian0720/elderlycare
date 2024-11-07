@@ -43,7 +43,7 @@ function isValidEmail(email) {
 document.addEventListener('DOMContentLoaded', function () {
     if (sessionStorage.getItem('isLoggedIn')) {
         // User is logged in, redirect to the dashboard
-        window.location.href = '/dashboard.html'; // Adjust to your actual dashboard path
+        window.location.href = 'elderlycare/dashboard.html'; // Adjust to your actual dashboard path
     }
 });
 
@@ -102,7 +102,6 @@ document.getElementById('registersubmit').addEventListener('click', (event) => {
             }
         });
 });
-
 // Handle Sign In
 document.getElementById('loginsubmit').addEventListener('click', (event) => {
     event.preventDefault();
@@ -127,7 +126,6 @@ document.getElementById('loginsubmit').addEventListener('click', (event) => {
             showMessage('Incorrect email or password. Please try again.', 'signInMessage');
         });
 });
-
 // Handle Forgot Password
 document.getElementById('forgotpasswordbutton').addEventListener('click', (event) => {
     event.preventDefault(); // Prevent the default action
@@ -137,7 +135,6 @@ document.getElementById('forgotpasswordbutton').addEventListener('click', (event
         showMessage('Please enter a valid email address.', 'signInMessage');
         return;
     }
-
     sendPasswordResetEmail(auth, email)
         .then(() => {
             alert("A password reset link has been sent to your email.");
