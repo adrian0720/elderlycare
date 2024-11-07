@@ -69,20 +69,17 @@
       <p class="register-link" onclick="showForm('login-form-container')">Back to Login</p>
   </form>
 </div>
-
-  
-
   </div>
-  <!-- JavaScript Function to Show Forms -->
-  <script>
-   function showForm(formId) {
-  const forms = document.querySelectorAll('.form-container');
-  forms.forEach(form => {
-    console.log(`Setting ${form.id} to ${(form.id === formId) ? 'block' : 'none'}`);
-    form.style.display = (form.id === formId) ? 'block' : 'none';
-  });
-}
-
-  </script>
+  <script>function showForm(formId) {
+    const forms = document.querySelectorAll('.form-container');
+    forms.forEach(form => {
+      if (form.id === formId) {
+        form.style.display = 'block';
+      } else {
+        form.style.display = 'none';
+      }
+    });
+      }
+    </script>
 </body>
 </html>
