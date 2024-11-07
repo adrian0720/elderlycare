@@ -120,7 +120,7 @@ document.getElementById('loginsubmit').addEventListener('click', (event) => {
             sessionStorage.setItem('userEmail', email); // Store the email in session storage
             showMessage('Login is successful', 'signInMessage');
             window.history.replaceState(null, null, '/dashboard.html'); // Replace the history state
-            window.location.href = '/dashboard.html'; // Redirect after successful login
+            window.location.href = 'elderlycare/dashboard.html'; // Redirect after successful login
         })
         .catch(() => {
             showMessage('Incorrect email or password. Please try again.', 'signInMessage');
