@@ -1,0 +1,296 @@
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom right, #e0f7fa, #b2ebf2); /* Light blue gradient */
+    color: #333; /* Dark text for contrast */
+    transition: background 0.3s ease, color 0.3s ease; /* Transition for smoothness */
+}
+body.dark-mode {
+    background: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text for contrast */
+}
+#logo {
+    position: absolute; /* Use absolute positioning */
+    top: 10px; /* Distance from the top */
+    left: 10px; /* Distance from the left */
+    width: 100px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    z-index: 10; /* Ensure it's above other content */
+}
+
+/* Position the dark mode toggle button */
+#dark-mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: transparent; /* No background */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer cursor */
+    outline: none; /* No outline */
+    transition: transform 0.3s ease; /* Transition effect */
+}
+
+#dark-mode-toggle:hover {
+    transform: scale(1.1); /* Scale effect on hover */
+}
+
+/* Moon icon styles */
+#moon-icon {
+    fill: #00796b; /* Initial color for the moon */
+    width: 30px; /* Icon width */
+    height: 30px; /* Icon height */
+    transition: fill 0.3s ease; /* Transition for color change */
+}
+
+body.dark-mode #moon-icon {
+    fill: #81d4fa; /* Change color in dark mode */
+}
+
+/* Container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    padding: 20px;
+}
+
+/* Form Container */
+.form-container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    padding: 40px;
+    max-width: 400px; /* Limit width */
+    width: 100%; /* Full width */
+    transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease; /* Added transition */
+    margin: auto; /* Centering the form */
+}
+
+body.dark-mode .form-container {
+    background: rgba(40, 40, 40, 0.9); /* Darker background for dark mode */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); /* Darker shadow */
+}
+
+/* Headings */
+h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #00796b; /* Darker blue for heading */
+    text-align: center; /* Center text */
+}
+
+body.dark-mode h1 {
+    color: #81d4fa; /* Light blue for heading in dark mode */
+}
+
+/* Input Fields */
+input[type="email"],
+input[type="password"],
+input[type="text"],
+select {
+    width: 100%; /* Full width of the form */
+    max-width: 100%; /* Prevent overflow */
+    padding: 12px;
+    margin: 10px 0; /* Vertical margin */
+    border: 1px solid #b2ebf2; /* Light blue border */
+    border-radius: 8px;
+    background: rgba(240, 248, 255, 0.8); /* Very light blue background */
+    color: #333; /* Dark text for readability */
+    font-size: 1rem;
+    transition: background 0.3s ease, color 0.3s ease; /* Added transition */
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+body.dark-mode input[type="email"],
+body.dark-mode input[type="password"],
+body.dark-mode input[type="text"],
+body.dark-mode select {
+    background: rgba(60, 60, 60, 0.8); /* Dark background for inputs */
+    border: 1px solid #444; /* Darker border */
+    color: #e0e0e0; /* Light text */
+}
+
+/* Focus Styles */
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus,
+select:focus {
+    background: rgba(255, 255, 255, 1); /* Solid white on focus */
+    outline: none; /* Remove outline */
+}
+
+body.dark-mode input[type="email"]:focus,
+body.dark-mode input[type="password"]:focus,
+body.dark-mode input[type="text"]:focus,
+body.dark-mode select:focus {
+    background: rgba(100, 100, 100, 1); /* Solid dark background on focus */
+}
+
+/* Buttons */
+button {
+    width: 100%; /* Full width for buttons */
+    padding: 12px;
+    border: none; /* No border */
+    border-radius: 8px; /* Rounded corners */
+    background: #2791dd; /* Dark teal background */
+    color: #fff; /* White text */
+    font-size: 1.1rem; /* Font size */
+    cursor: pointer; /* Pointer cursor */
+    transition: background 0.3s ease, transform 0.2s ease; /* Transition effects */
+}
+
+/* Dark Mode Button Styles */
+body.dark-mode button {
+    background: #00695c; /* Darker teal for dark mode */
+}
+
+/* Button Hover Styles */
+button:hover {
+    background: #004d40; /* Darker teal on hover */
+    transform: translateY(-2px); /* Lift effect */
+}
+
+body.dark-mode button:hover {
+    background: #004d40; /* Consistent hover for dark mode */
+}
+
+/* Register and Links */
+.register-link {
+    display: block;
+    text-align: center; /* Center text */
+    margin-top: 20px; /* Margin */
+    color: #00796b; /* Dark teal */
+    cursor: pointer; /* Pointer cursor */
+    transition: color 0.3s ease; /* Transition */
+}
+
+body.dark-mode .register-link {
+    color: #81d4fa; /* Light blue for links in dark mode */
+}
+
+.register-link:hover {
+    color: #004d40; /* Darker teal on hover */
+}
+
+body.dark-mode .register-link:hover {
+    color: #b2ebf2; /* Lighter blue on hover in dark mode */
+}
+
+/* Message Div */
+.messageDiv {
+    margin-bottom: 20px; /* Margin */
+    color: #ff6b6b; /* Red for error messages */
+    text-align: center; /* Center text */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 20px; /* Less padding on smaller screens */
+    }
+
+    h1 {
+        font-size: 1.8rem; /* Smaller heading */
+    }
+
+    button {
+        font-size: 1rem; /* Smaller button text */
+    }
+}
+
+/* Password Container */
+.password-container {
+    position: relative; /* Position relative for inner elements */
+    width: 100%; /* Full width */
+}
+
+#login-password,
+#register-password {
+    padding-right: 40px; /* Space for the toggle image */
+    width: calc(100%); /* Full width minus padding */
+}
+
+/* Toggle icon for the register password */
+#toggle-password {
+    position: absolute; /* Absolute position */
+    right: 10px; /* Move the icon slightly inside the input box */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust position */
+    width: 24px; /* Icon width */
+    height: 24px; /* Icon height */
+    cursor: pointer; /* Pointer cursor */
+    z-index: 1; /* Ensure it's above the input */
+}
+
+/* Toggle icon for the login password */
+#toggle-login-password {
+    position: absolute; /* Absolute position */
+    right: 10px; /* Move the icon slightly inside the input box */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust position */
+    width: 24px; /* Icon width */
+    height: 24px; /* Icon height */
+    cursor: pointer; /* Pointer cursor */
+    z-index: 1; /* Ensure it's above the input */
+}
+
+
+
+
+/* Theme Toggle Switch Styles */
+.toggle-switch {
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    position: fixed; /* Fixed position */
+    top: 20px; /* Position from top */
+    right: 20px; /* Position from right */
+}
+
+.toggle-label {
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    cursor: pointer; /* Pointer cursor */
+    width: 50px; /* Width of the toggle */
+    height: 24px; /* Height of the toggle */
+    background: #b0bec5; /* Light gray background */
+    border-radius: 50px; /* Rounded corners for switch */
+    position: relative; /* Position relative for inner elements */
+    transition: background 0.3s ease; /* Transition */
+}
+
+.toggle-label:before {
+    content: ""; /* Content */
+    position: absolute; /* Absolute position */
+    top: 2px; /* Position from top */
+    left: 2px; /* Position from left */
+    width: 20px; /* Width of toggle ball */
+    height: 20px; /* Height of toggle ball */
+    background: white; /* White toggle ball */
+    border-radius: 50%; /* Rounded */
+    transition: transform 0.3s ease; /* Transition for smoothness */
+}
+
+/* Dark Mode Toggle Effect */
+body.dark-mode .toggle-label {
+    background: #00796b; /* Change background for dark mode */
+}
+
+body.dark-mode .toggle-label:before {
+    transform: translateX(26px); /* Move toggle ball to the right */
+}
+
+input {
+    display: inline-block;
+    padding: 8px;
+    font-size: 14px;
+    width: 200px; /* Set a fixed width or adjust to your needs */
+    margin: 0; /* Remove margin to make them align exactly side by side */
+}
+

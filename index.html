@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="x icon" href="website/logo.png">
+    <title>Elderly Care</title>
+
+
+    <link rel="stylesheet" href="website/website1.css">
+    <script type="module" src="websiteScript.js"></script>
+</head>
+<body>
+    <section class="header" id="header">
+        <nav>
+            <div class="header">
+                <div class="logo">
+                    <img src="website/logo.png" alt="Logo">
+                </div>
+                <div class="camera">
+                    <img src="website/camera.png" alt="Camera">
+                </div>
+                <nav class="menu">
+                    <ul>
+                        <li class="menu__item"><a class="menu__link" href="#header">Home</a></li>
+                        <li class="menu__item"><a class="menu__link" href="#cards">Services</a></li>
+                        <li class="menu__item"><a class="menu__link" href="#app-screenshots"">Application</a></li>
+                        <li class="menu__item"><a class="menu__link" href="#about-us">About</a></li>                 
+                    </ul>
+                </nav>
+                <div class="top-right">
+                    <ul>
+                        
+                        <li>
+                            <a href="/signuplogin.html" id="signupBtn">
+                                <button class="button">Sign up</button>
+                            </a>
+                        </li>
+                         
+                        <li>
+                            <a href="/signuplogin.html" id="LoginpBtn">
+                                <button class="button">Login</button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-box">
+                <h1>EMPOWERING HEARTS,</h1>
+                <h1>MONITORING OXYGEN</h1>
+                <h1>LEVELS, AND WATCHING</h1>
+                <h1>OVER WITH COMPASSION</h1>
+            </div>
+        </nav>
+    </section>
+
+    <!-- Cards Section -->
+    <section class="cards" id="cards">
+        <h1>DISCOVER MORE</h1>
+        <div class="row">
+            <div class="card">
+                <h3>Oximeter Watch</h3>
+                <p><strong>Device/Sensor:</strong> Esp32 S3/Max30100</p>
+                <p>The Oximeter Watch monitors blood oxygen levels, providing real-time data to ensure the health and well-being of seniors, facilitating proactive care.</p>
+                <h4>Features:</h4>
+                <ul>
+                    <li>Continuous SpO2 Monitoring: Tracks blood oxygen saturation levels throughout the day.</li>
+                    <li>Data Sync: Connects to mobile apps for data tracking and analysis.</li>
+                </ul>
+            </div>
+            
+            <div class="card1">
+                <h3>Monitoring Camera</h3>
+                <p><strong>Brand:</strong> Tapo</p>
+                <p><strong>Model:</strong> C110</p>
+                <p>Smart cameras help improve senior care with remote monitoring and supervision, ensuring safety, security, and well-being of the elderly.</p>
+                <h4>Features:</h4>
+                <ul>
+                    <li>High-Definition Video: Offers clear live feeds for caregivers and family.</li>
+                </ul>
+            </div>
+            
+            <div class="card2">
+                <h3>Pulse Watch</h3>
+              
+                <p><strong>Device/Sensor:</strong> Esp32 S3/Max30100</p>
+                <p>The Pulse Watch tracks heart rate and pulse, enabling caregivers to monitor vital signs and respond quickly to any health changes in elderly individuals.</p>
+                <h4>Features:</h4>
+                <ul>
+                    <li>Heart Rate Monitoring: Provides real-time heart rate tracking.</li>
+                </ul>
+            </div> 
+        </div>
+    </section>
+    <section id="app-screenshots" class="screenshots-section">
+        <h3>Application Screenshots</h3>
+        <p>Explore the user interface and features of our application through the following screenshots. Each image highlights different functionalities and design elements that enhance the user experience.</p>
+        <button onclick="window.location.href='/signuplogin.html';" class="download-button">Login to download</button>
+                  <div class="screenshot-gallery">
+            <div class="screenshot-item">
+                <div class="phone-mockup">
+                    <img src="website/D.jpg" alt="Homepage">
+                </div>
+                <p>Screenshot 1: Homepage of the application displayed its purpose and reason</p>
+            </div>
+            <div class="screenshot-item">
+                <div class="phone-mockup">
+                    <img src="website/B.jpg" alt="User Profile">
+                </div>
+                <p>Screenshot 2: Navigating the appplication</p>
+            </div>
+            <div class="screenshot-item">
+                <div class="phone-mockup">
+                    <img src="website/C.jpg" alt="Health Monitoring">
+                </div>
+                <p>Screenshot 3: Monitors Sorrounding using CCTV</p>
+            </div>
+            <div class="screenshot-item">
+                <div class="phone-mockup">
+                    <img src="website/A.jpg" alt="Settings">
+                </div>
+                <p>Screenshot 4: Monitors the Heart Rate And Oxygen</p>
+            </div>
+        </div>
+    </section>
+    
+      
+    
+
+    <section class="about-us" id="about-us">
+        <h2>About Us</h2>
+        <p>Our website is an integral part of our capstone project, designed to improve elderly care at Anawim. Our mission is to use cutting-edge technology to create solutions that enhance the safety, health, and overall well-being of elderly individuals. We believe that technology can play a vital role in transforming traditional care methods into more efficient and effective practices, providing our users with peace of mind and the highest level of support.
+    
+            Our dedicated team comprises experts from various fields who are passionate about making a positive impact. Cedrick Abad, our ESP Programmer, is responsible for integrating the ESP32 hardware components, allowing real-time monitoring and data collection. Jan Michael Sulit, our Website and Desktop Application Programmer, ensures the system’s seamless operation, creating a user-friendly interface that promotes accessibility and ease of use for both caregivers and elderly users.
+            
+            Adrian Palmes, our MIT Programmer, focuses on implementing accurate algorithms and medical technology components that are essential for monitoring vital signs and other health indicators. With his expertise, we are able to provide reliable and precise data that caregivers and medical professionals can use to make informed decisions. Our Documentation Specialist, Nitzan Mariano, ensures that every step of our project is well-documented, from system designs to implementation processes, making it easier for future developments and evaluations.
+            
+            Lenard Bengco, our Research Specialist, plays a crucial role in ensuring that our solutions are tailored to the unique needs of Anawims elderly community. By conducting thorough research on elderly care trends and technological advancements, Lenard helps our team align our project with the best practices and innovative solutions in the field. Together, our team's collaborative efforts and expertise are aimed at making a difference and contributing to the welfare of the elderly in our community.
+        </p>
+        
+        <footer class="footer">
+            <ul class="social-icon">
+                <li class="social-icon__item"><a class="social-icon__link" href="https://www.facebook.com/photo/?fbid=1376170849488400&set=pob.100012864946756">
+                    <i class="bi bi-facebook"></i>
+                </a></li>
+                <li class="social-icon__item"><a class="social-icon__link" href="#">
+                    <i class="bi bi-linkedin"></i>
+                </a></li>
+                <li class="social-icon__item"><a class="social-icon__link" href="#">
+                    <i class="bi bi-instagram"></i>
+                </a></li>
+            </ul>
+            <h3 id="Foot">&copy;2024 Sana all | All Rights Reserved</h3>
+        </footer>
+    </section>
+
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.querySelectorAll('.menu__link').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+    
+                const targetId = this.getAttribute('href'); // Get the target ID
+                const targetElement = document.querySelector(targetId); // Find the target element
+    
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth' // Enable smooth scrolling
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
