@@ -3,23 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <link rel="shortcut icon" type="x icon" href="website/logo.png">
   <title>Elderly Care Assistance - Login/Signup</title>
   <link rel="stylesheet" href="homepagedesign.css">
   <script type="module" src="firebaseauth.js"></script>
   <script type="module" src="script.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 <body>
 
-  
-  <a href="index.html">
-    <img src="logo.png" alt="Logo" id="logo">
-  </a>
+  <a href="/index.html">
+    <img src="website/logo.png" alt="Logo" id="logo">
+</a>
 
-  <!-- Theme Toggle -->
-  <div id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode" class="toggle-switch">
-    <input type="checkbox" id="toggle-checkbox" style="display: none;" />
-    <label for="toggle-checkbox" class="toggle-label">
+<div id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode" class="toggle-switch">
+  <input type="checkbox" id="toggle-checkbox" style="display: none;" />
+  <label for="toggle-checkbox" class="toggle-label">
+    
       <svg id="moon-icon" class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24">
         <path fill="currentColor" d="M12 2c-5.523 0-10 4.477-10 10a10 10 0 0 0 6.372 9.243c-.026-.26-.372-.52-.58-.782a9.037 9.037 0 0 1-.979-1.326A10 10 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"/>
       </svg>
@@ -30,46 +29,53 @@
   </div>
 
   <div class="container">
-    <!-- Login Form -->
     <div class="form-container" id="login-form-container">
       <h1>Login</h1>
       <form id="login-form">
-          <div id="signInMessage" class="messageDiv" style="display:none; color: red; font-weight: bold;"></div>
-          <input type="email" id="login-email" placeholder="Email" required>
-          <div class="password-container">
-              <input type="password" id="login-password" placeholder="Password" required>
-              <img src="unhide.jpg" alt="Show Password" id="toggle-login-password" style="cursor:pointer;">
-          </div>
-          <button type="submit" id="loginsubmit">Login</button>
-          <p class="register-link" onclick="showForm('signup-form-container')">Don't have an account? Create Account</p>
-          <p class="register-link" onclick="showForm('forgot-password-form-container')" style="color: blue;">Forgot password?</p>
+        <div id="signInMessage" class="messageDiv" style="display:none"></div>
+        <input type="email" id="login-email" placeholder="Email" required>
+
+        <div class="password-container">
+          <input type="password" id="login-password" placeholder="Password" required>
+          <img src="unhide.jpg" alt="Show Password" id="toggle-login-password" style="cursor:pointer;">
+        </div>      
+        
+        <button type="submit" id="loginsubmit">Login</button>
+        <p class="register-link" onclick="showForm('signup-form-container')">Don't have an account? Create Account</p>
+        <p class="register-link" onclick="showForm('forgot-password-form-container')" style="color: blue;">Forgot password?</p>
       </form>
-    <!-- Signup Form -->
+    </div>
+    
     <div class="form-container" id="signup-form-container" style="display:none">
       <h1>Register</h1>
       <form id="register-form">
-        <div id="signUpMessage" class="messageDiv" style="display:none"></div>
-        <input type="text" id="firstname" placeholder="First Name" required>
-        <input type="text" id="lastname" placeholder="Last Name" required>
-        <input type="email" id="register-email" placeholder="Email" required>
-        <div class="password-container">
-        <input type="password" id="register-password" placeholder="Password" required>
-        <img src="unhide.jpg" alt="Show Password" id="toggle-password" style="cursor:pointer;">
-        </div>
-        <button type="submit" id="registersubmit">Register</button>
-        <p class="register-link" onclick="showForm('login-form-container')">Already have an account? Log In</p>
+          <div id="signUpMessage" class="messageDiv" style="display:none"></div>
+          <input type="text" id="firstname" placeholder="First Name" required>
+          <input type="text" id="lastname" placeholder="Last Name" required>
+          
+          <input type="email" id="register-email" placeholder="Email" required>     
+          <div class="password-container">
+              <input type="password" id="register-password" placeholder="Password" required>
+              <img src="unhide.jpg" alt="Show Password" id="toggle-password" style="cursor:pointer;">
+          </div>
+          
+          <button type="submit" id="registersubmit">Register</button>
+          
+          <p class="register-link" onclick="showForm('login-form-container')">Already have an account? Log In</p>
       </form>
-    </div>
-  <!-- Forgot Password Form -->
-<div class="form-container" id="forgot-password-form-container" style="display:none">
-  <h1>Forgot Password</h1>
-  <form id="forgot-password-form">
-      <input type="email" id="forgot-email" placeholder="Enter your email" required>
-      <button type="button" id="forgotpasswordbutton">Send reset email</button>
-      <p class="register-link" onclick="showForm('login-form-container')">Back to Login</p>
-  </form>
-</div>
   </div>
+  
+
+  <div class="form-container" id="forgot-password-form-container" style="display:none">
+    <h1>Forgot Password</h1>
+    <form id="forgot-password-form">
+        <input type="email" id="forgot-email" placeholder="Enter your email" required>
+        <button type="submit" id="forgotpasswordbutton">Send reset email</button>
+        <p id="signInMessage" style="display:none; color: red;"></p>
+        <p class="register-link" onclick="showForm('login-form-container')">Back to Login</p>
+    </form>
+</div>
+
   <script>function showForm(formId) {
     const forms = document.querySelectorAll('.form-container');
     forms.forEach(form => {

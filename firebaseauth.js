@@ -3,7 +3,8 @@ import {
     getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    sendPasswordResetEmail
+    sendPasswordResetEmail,
+    onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
@@ -43,7 +44,7 @@ function isValidEmail(email) {
 document.addEventListener('DOMContentLoaded', function () {
     if (sessionStorage.getItem('isLoggedIn')) {
         // User is logged in, redirect to the dashboard
-        window.location.href = 'elderlycare/dashboard.html'; // Adjust to your actual dashboard path
+        window.location.href = 'elderlycareweb/dashboard.html'; // Adjust to your actual dashboard path
     }
 });
 
@@ -54,8 +55,6 @@ document.getElementById('registersubmit').addEventListener('click', (event) => {
     let password = document.getElementById('register-password').value;
     let firstName = document.getElementById('firstname').value;
     let lastName = document.getElementById('lastname').value;
-    let securityQuestion = document.getElementById('security-question').value;
-    let securityAnswer = document.getElementById('security-answer').value;
 
     // Validate inputs
     if (!isValidEmail(email)) {
@@ -64,10 +63,6 @@ document.getElementById('registersubmit').addEventListener('click', (event) => {
     }
     if (firstName.trim() === '' || lastName.trim() === '') {
         showMessage('Please enter your First Name and Last Name.', 'signUpMessage');
-        return;
-    }
-    if (securityQuestion === '' || securityAnswer.trim() === '') {
-        showMessage('Please select a security question and provide an answer.', 'signUpMessage');
         return;
     }
 
@@ -79,9 +74,7 @@ document.getElementById('registersubmit').addEventListener('click', (event) => {
             const userData = {
                 email,
                 firstName,
-                lastName,
-                securityQuestion,
-                securityAnswer
+                lastName
             };
 
             console.log("User data to be stored:", userData); // Log data to be stored
@@ -102,30 +95,54 @@ document.getElementById('registersubmit').addEventListener('click', (event) => {
             }
         });
 });
+
+
+
+
+
+
+
+
+
 // Handle Sign In
-document.getElementById('loginsubmit').addEventListener('click', (event) => {
+document.getElementById('loginsubmit').addEventListener('click', async (event) => {
     event.preventDefault();
     let email = document.getElementById('login-email').value.trim();
     let password = document.getElementById('login-password').value;
 
-    if (!isValidEmail(email) || email.trim() === '' || password.trim() === '') {
+    // Validate email and password
+    if (!isValidEmail(email) || email === '' || password === '') {
         showMessage('Please enter a valid email and password.', 'signInMessage');
         return;
     }
 
-    signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-            // Set session storage on successful login
-            sessionStorage.setItem('isLoggedIn', 'true');
-            sessionStorage.setItem('userEmail', email); // Store the email in session storage
-            showMessage('Login is successful', 'signInMessage');
-            window.history.replaceState(null, null, '/dashboard.html'); // Replace the history state
-            window.location.href = 'elderlycare/dashboard.html'; // Redirect after successful login
-        })
-        .catch(() => {
-            showMessage('Incorrect email or password. Please try again.', 'signInMessage');
-        });
+    try {
+        // Attempt to sign in
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user; // Get user info from response
+
+        // Set session storage on successful login
+        sessionStorage.setItem('isLoggedIn', 'true');
+        sessionStorage.setItem('userEmail', email);
+        sessionStorage.setItem('healthEmail', email);
+        sessionStorage.setItem('userID', user.uid); // Store user ID safely
+
+        // Show success message and redirect
+        showMessage('Login is successful', 'signInMessage');
+        window.history.replaceState(null, null, 'elderlycareweb/dashboard.html'); // Update URL without reloading
+        window.location.href = 'elderlycareweb/dashboard.html'; // Redirect to dashboard
+
+    } catch (error) {
+        // Handle login error
+        showMessage('Incorrect email or password. Please try again.', 'signInMessage');
+    }
 });
+
+
+
+
+
+
 // Handle Forgot Password
 document.getElementById('forgotpasswordbutton').addEventListener('click', (event) => {
     event.preventDefault(); // Prevent the default action
@@ -135,6 +152,7 @@ document.getElementById('forgotpasswordbutton').addEventListener('click', (event
         showMessage('Please enter a valid email address.', 'signInMessage');
         return;
     }
+
     sendPasswordResetEmail(auth, email)
         .then(() => {
             alert("A password reset link has been sent to your email.");
@@ -146,5 +164,7 @@ document.getElementById('forgotpasswordbutton').addEventListener('click', (event
             showMessage(`Error: ${error.message}`, 'signInMessage');
         });
 });
+
+
 
 

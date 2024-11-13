@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="x icon" href="website/logo.png">
     <title>Elderly Care</title>
-    <link rel="stylesheet" href="website1.css">
+
+
+    <link rel="stylesheet" href="website/website1.css">
     <script type="module" src="websiteScript.js"></script>
 </head>
 <body>
@@ -13,12 +17,11 @@
         <nav>
             <div class="header">
                 <div class="logo">
-                    <img src="logo.png" alt="Logo">
+                    <img src="website/logo.png" alt="Logo">
                 </div>
                 <div class="camera">
                     <img src="website/camera.png" alt="Camera">
                 </div>
-                
                 <nav class="menu">
                     <ul>
                         <li class="menu__item"><a class="menu__link" href="#header">Home</a></li>
@@ -27,32 +30,29 @@
                         <li class="menu__item"><a class="menu__link" href="#about-us">About</a></li>                 
                     </ul>
                 </nav>
-            
                 <div class="top-right">
                     <ul>
-                        <li class="active">
-                            <a href="/elderlycare/signuplogin.html" id="loginBtn">
-                                <button class="button">Login</button>
+                        
+                        <li>
+                            <a href="/signuplogin.html" id="signupBtn">
+                                <button class="button">Sign up</button>
                             </a>
                         </li>
+                         
                         <li>
-                            <a href="/elderlycare/signuplogin.html" id="signupBtn">
-                                <button class="button">Sign up</button>
+                            <a href="/signuplogin.html" id="LoginpBtn">
+                                <button class="button">Login</button>
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
-        
             <div class="text-box">
                 <h1>EMPOWERING HEARTS,</h1>
                 <h1>MONITORING OXYGEN</h1>
                 <h1>LEVELS, AND WATCHING</h1>
                 <h1>OVER WITH COMPASSION</h1>
-                
             </div>
-
-            
         </nav>
     </section>
 
@@ -62,8 +62,7 @@
         <div class="row">
             <div class="card">
                 <h3>Oximeter Watch</h3>
-                <p><strong>Brand:</strong> HealthTech</p>
-                <p><strong>Model:</strong> HT-2000</p>
+                <p><strong>Device/Sensor:</strong> Esp32 S3/Max30100</p>
                 <p>The Oximeter Watch monitors blood oxygen levels, providing real-time data to ensure the health and well-being of seniors, facilitating proactive care.</p>
                 <h4>Features:</h4>
                 <ul>
@@ -74,8 +73,8 @@
             
             <div class="card1">
                 <h3>Monitoring Camera</h3>
-                <p><strong>Brand:</strong> SecureView</p>
-                <p><strong>Model:</strong> SV-1080P</p>
+                <p><strong>Brand:</strong> Tapo</p>
+                <p><strong>Model:</strong> C110</p>
                 <p>Smart cameras help improve senior care with remote monitoring and supervision, ensuring safety, security, and well-being of the elderly.</p>
                 <h4>Features:</h4>
                 <ul>
@@ -85,47 +84,44 @@
             
             <div class="card2">
                 <h3>Pulse Watch</h3>
-                <p><strong>Brand:</strong> VitalSense</p>
-                <p><strong>Model:</strong> VS-500</p>
+              
+                <p><strong>Device/Sensor:</strong> Esp32 S3/Max30100</p>
                 <p>The Pulse Watch tracks heart rate and pulse, enabling caregivers to monitor vital signs and respond quickly to any health changes in elderly individuals.</p>
                 <h4>Features:</h4>
                 <ul>
                     <li>Heart Rate Monitoring: Provides real-time heart rate tracking.</li>
                 </ul>
-            </div>
-            
-            
+            </div> 
         </div>
     </section>
-
     <section id="app-screenshots" class="screenshots-section">
         <h3>Application Screenshots</h3>
         <p>Explore the user interface and features of our application through the following screenshots. Each image highlights different functionalities and design elements that enhance the user experience.</p>
-        <button onclick="window.location.href='app.html'" class="download-button">Download</button>
-        <div class="screenshot-gallery">
+        <button onclick="window.location.href='/signuplogin.html';" class="download-button">Login to download</button>
+                  <div class="screenshot-gallery">
             <div class="screenshot-item">
                 <div class="phone-mockup">
-                    <img src="website/1.jpg" alt="Homepage">
+                    <img src="website/D.jpg" alt="Homepage">
                 </div>
-                <p>Screenshot 1: This is the homepage, showcasing the main features of our application.</p>
+                <p>Screenshot 1: Homepage of the application displayed its purpose and reason</p>
             </div>
             <div class="screenshot-item">
                 <div class="phone-mockup">
-                    <img src="website/2.jpg" alt="User Profile">
+                    <img src="website/B.jpg" alt="User Profile">
                 </div>
-                <p>Screenshot 2: The user profile section where users can manage their personal information.</p>
+                <p>Screenshot 2: Navigating the appplication</p>
             </div>
             <div class="screenshot-item">
                 <div class="phone-mockup">
-                    <img src="website/3.jpg" alt="Health Monitoring">
+                    <img src="website/C.jpg" alt="Health Monitoring">
                 </div>
-                <p>Screenshot 3: Health monitoring dashboard displaying real-time health data.</p>
+                <p>Screenshot 3: Monitors Sorrounding using CCTV</p>
             </div>
             <div class="screenshot-item">
                 <div class="phone-mockup">
-                    <img src="website/4.jpg" alt="Settings">
+                    <img src="website/A.jpg" alt="Settings">
                 </div>
-                <p>Screenshot 4: Settings page where users can customize their preferences.</p>
+                <p>Screenshot 4: Monitors the Heart Rate And Oxygen</p>
             </div>
         </div>
     </section>
@@ -159,12 +155,6 @@
             <h3 id="Foot">&copy;2024 Sana all | All Rights Reserved</h3>
         </footer>
     </section>
-    
-   
-    
-    
-   
-
 
     <script type="module" src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
     <script type="module" src="https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js"></script>
