@@ -4,7 +4,7 @@ document.getElementById('signupBtn').addEventListener('click', () => {
 });
 
 // Handle Sign Up button click
-document.getElementById('signupBtn').addEventListener('click', () => {
+document.getElementById('loginBtn').addEventListener('click', () => {
     window.location.href = 'elderlycare/signuplogin.html'; // Redirect to sign-up/login page
 });
 
