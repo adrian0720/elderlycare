@@ -39,7 +39,7 @@ document.getElementById('logoutBtn').addEventListener('click', function (event) 
         alert("You have successfully logged out!");
 
         // Redirect the user to the login page after logout
-        window.location.href = 'elderlycare/index.html'; // Adjust the path to your login page
+        window.location.href = 'index.html'; // Adjust the path to your login page
     };
 
     // Cancel button
