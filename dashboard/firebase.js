@@ -486,8 +486,8 @@ function checkEmailInRealtimeDatabase() {
                 document.getElementById("heart-rate").innerText = heartRateSnapshot.exists() ? heartRateSnapshot.val() : '--';
                 document.getElementById("oxygen-level").innerText = spo2Snapshot.exists() ? spo2Snapshot.val() : '--';
             } else {
-                console.log("Email does not match.");
-                document.getElementById("signInMessage").innerText = "Email mismatch.";
+                console.log("");
+                document.getElementById("signInMessage").innerText = "";
             }
         } else {
             console.log("No email found in Realtime Database.");
