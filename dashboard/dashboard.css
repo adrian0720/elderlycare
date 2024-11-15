@@ -518,4 +518,44 @@ h2 {
 	#content main .table-data .todo .todo-list {
 		min-width: 420px;
 	}
-}
+	}
+	
+	.abnormal-readings {
+	    margin: 20px 0;
+	    font-family: Arial, sans-serif;
+	}
+	
+	.abnormal-readings h3 {
+	    font-size: 1.5em;
+	    color: #333;
+	}
+	
+	.readings-list {
+	    list-style-type: none;
+	    padding: 0;
+	    margin: 0;
+	}
+	
+	.readings-list li {
+	    background: #f9f9f9;
+	    border: 1px solid #ddd;
+	    border-radius: 5px;
+	    padding: 15px;
+	    margin-bottom: 15px;
+	    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	}
+	
+	.readings-list h4 {
+	    margin: 0;
+	    color: #ff5722;
+	    font-size: 1.2em;
+	}
+	
+	.readings-list p {
+	    margin: 5px 0;
+	    color: #555;
+	}
+	
+	.readings-list strong {
+	    color: #333;
+	}
