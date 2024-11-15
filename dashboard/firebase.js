@@ -451,8 +451,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // Function to check if the email in sessionStorage matches the email in Realtime Database
-function checkEmailInRealtimeDatabase() {
+async function checkEmailInRealtimeDatabase() {
     const db = getDatabase();
+    const firestore = getFirestore(); // Initialize Firestore
     const userEmail = sessionStorage.getItem('healthEmail');
 
     if (!userEmail) {
@@ -482,12 +483,38 @@ function checkEmailInRealtimeDatabase() {
                 const heartRateSnapshot = await get(heartRateRef);
                 const spo2Snapshot = await get(spo2Ref);
 
-                // Update UI with health data if emails match
-                document.getElementById("heart-rate").innerText = heartRateSnapshot.exists() ? heartRateSnapshot.val() : '--';
-                document.getElementById("oxygen-level").innerText = spo2Snapshot.exists() ? spo2Snapshot.val() : '--';
+                const heartRate = heartRateSnapshot.exists() ? parseInt(heartRateSnapshot.val(), 10) : null;
+                const spo2 = spo2Snapshot.exists() ? parseInt(spo2Snapshot.val(), 10) : null;
+
+                // Update UI with health data
+                document.getElementById("heart-rate").innerText = heartRate !== null ? heartRate : '--';
+                document.getElementById("oxygen-level").innerText = spo2 !== null ? spo2 : '--';
+
+                // Check for abnormal values and store in Firestore if found
+                if (
+                    (heartRate !== null && (heartRate < 60 || heartRate > 100)) || 
+                    (spo2 !== null && (spo2 < 90 || spo2 > 100))
+                ) {
+                    console.log("Abnormal readings detected.");
+
+                    const abnoDoc = {
+                        email: userEmail,
+                        heartRate: heartRate !== null ? heartRate.toString() : "N/A",
+                        oxygen: spo2 !== null ? spo2.toString() : "N/A",
+                        time: new Date().toLocaleString("en-US", { timeZone: "Asia/Manila" }) // Store local time in Asia/Manila timezone
+                    };
+
+                    try {
+                        const abnoCollectionRef = collection(firestore, "AbnoRatesOxy");
+                        await addDoc(abnoCollectionRef, abnoDoc);
+                        console.log("Abnormal reading stored in Firestore:", abnoDoc);
+                    } catch (error) {
+                        console.error("Error storing abnormal reading in Firestore:", error);
+                    }
+                }
             } else {
-                console.log("");
-                document.getElementById("signInMessage").innerText = "";
+                console.log("Email does not match in Realtime Database.");
+                document.getElementById("signInMessage").innerText = "Email mismatch.";
             }
         } else {
             console.log("No email found in Realtime Database.");
