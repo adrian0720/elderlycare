@@ -53,11 +53,26 @@
             <i class='bx bx-menu'></i>
             <a href="#" class="nav-link">Categories</a>
             <form action="#" method="get">
-                <div class="form-input">
-                    
+                <div class="form-input">   
                 </div>
             </form>
             <input type="checkbox" id="switch-mode" hidden>
+            <button 
+            type="button" 
+            id="downloadButton" 
+            onclick="downloadFile()" 
+            style="
+                width: 300px; 
+                height: 40px; 
+                font-size: 18px; 
+                line-height: 20px; 
+                display: inline-block; 
+                text-align: center; 
+                background-color: cadetblue;
+                cursor: pointer;">
+            Download ElderlyCare
+        </button>
+        
 
            
 
@@ -189,33 +204,40 @@
                         Regular pulse monitoring is essential for older adults to manage heart health and detect potential issues early.
                     </p>
 
-                   <div class="abnormal-readings">    
+                    <div class="abnormal-readings">
                         <h3>Previous Abnormal Readings</h3>
-                        <ul class="readings-list">
-                            <li>
-                                <h4>Heart Rate: 120 bpm</h4>
-                                <p><strong>Date:</strong> November 12, 2024</p>
-                                <p><strong>Note:</strong> Elevated heart rate observed, possible stress or dehydration.</p>
-                            </li>
-                            <li>
-                                <h4>Oxygen Saturation: 88%</h4>
-                                <p><strong>Date:</strong> November 10, 2024</p>
-                                <p><strong>Note:</strong> Low oxygen levels detected, possible respiratory issues.</p>
-                            </li>
-                            <li>
-                                <h4>Heart Rate: 55 bpm</h4>
-                                <p><strong>Date:</strong> November 9, 2024</p>
-                                <p><strong>Note:</strong> Abnormally low pulse, monitor for circulation issues.</p>
-                            </li>
-                        </ul>
+                        <table class="readings-table">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Reading</th>
+                                    <th>Date</th>
+                                    <th>Note</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Heart Rate</strong></td>
+                                    <td><h4>No data</h4></td>
+                                    <td>No data</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Oxygen Saturation</strong></td>
+                                    <td><h4>No data/h4></td>
+                                    <td>No data</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Heart Rate</strong></td>
+                                    <td><h4>No data</h4></td>
+                                    <td>No data</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-           <button 
-               type="button" 
-               id="downloadButton" 
-               onclick="downloadFile()" 
-               style="width: 300px; height: 50px; font-size: 18px; line-height: 80px; display: inline-block; text-align: center;">
-               Download ElderlyCare
-           </button>
+                    
+
+         
 
                 </div>
             </div>
