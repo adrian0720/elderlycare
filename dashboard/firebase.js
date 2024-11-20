@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-import { getFirestore, setDoc, doc, collection, serverTimestamp, query, where, getDocs,getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+import { getFirestore, setDoc, doc, collection, serverTimestamp, query, where, getDocs,getDoc, updateDoc, addDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 import { getDatabase, ref, onValue, get } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
 
 // Firebase configuration
@@ -450,10 +450,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
+
+// Constants for abnormal thresholds
+const HEART_RATE_LOW = 60;
+const HEART_RATE_HIGH = 100;
+const SPO2_LOW = 90;
+const SPO2_HIGH = 100;
+
+// Variables to track the last stored values
+let lastStoredHeartRate = null;
+let lastStoredSpo2 = null;
+
 // Function to check if the email in sessionStorage matches the email in Realtime Database
 async function checkEmailInRealtimeDatabase() {
     const db = getDatabase();
-    const firestore = getFirestore(); // Initialize Firestore
+    const firestore = getFirestore();
     const userEmail = sessionStorage.getItem('healthEmail');
 
     if (!userEmail) {
@@ -464,7 +476,6 @@ async function checkEmailInRealtimeDatabase() {
 
     console.log(`Checking email from sessionStorage: '${userEmail}'`);
 
-    // Reference to the email value in Realtime Database
     const healthDataEmailRef = ref(db, "sensorReading/email/Value");
 
     // Set up a listener for changes to the email value
@@ -476,7 +487,6 @@ async function checkEmailInRealtimeDatabase() {
             if (data === userEmail) {
                 console.log("Email found and matched in Realtime Database.");
 
-                // Reference heart rate and oximeter data
                 const heartRateRef = ref(db, "sensorReading/heartRate/value");
                 const spo2Ref = ref(db, "sensorReading/oximeter/value");
 
@@ -490,27 +500,54 @@ async function checkEmailInRealtimeDatabase() {
                 document.getElementById("heart-rate").innerText = heartRate !== null ? heartRate : '--';
                 document.getElementById("oxygen-level").innerText = spo2 !== null ? spo2 : '--';
 
-                // Check for abnormal values and store in Firestore if found
-                if (
-                    (heartRate !== null && (heartRate < 60 || heartRate > 100)) || 
-                    (spo2 !== null && (spo2 < 90 || spo2 > 100))
-                ) {
+                // Check for abnormal values
+                const isHeartRateAbnormal = heartRate !== null && (heartRate < HEART_RATE_LOW || heartRate > HEART_RATE_HIGH);
+                const isSpo2Abnormal = spo2 !== null && (spo2 < SPO2_LOW || spo2 > SPO2_HIGH);
+
+                if (isHeartRateAbnormal || isSpo2Abnormal) {
                     console.log("Abnormal readings detected.");
 
-                    const abnoDoc = {
-                        email: userEmail,
-                        heartRate: heartRate !== null ? heartRate.toString() : "N/A",
-                        oxygen: spo2 !== null ? spo2.toString() : "N/A",
-                        time: new Date().toLocaleString("en-US", { timeZone: "Asia/Manila" }) // Store local time in Asia/Manila timezone
-                    };
+                    // Check if the values have changed
+                    if (heartRate === lastStoredHeartRate && spo2 === lastStoredSpo2) {
+                        console.log("Values are the same as the last stored readings. Skipping storage.");
+                        return;
+                    }
+
+                    // Update the last stored values
+                    lastStoredHeartRate = heartRate;
+                    lastStoredSpo2 = spo2;
 
                     try {
-                        const abnoCollectionRef = collection(firestore, "AbnoRatesOxy");
-                        await addDoc(abnoCollectionRef, abnoDoc);
-                        console.log("Abnormal reading stored in Firestore:", abnoDoc);
+                        const emailDocRef = doc(firestore, "AbnoRatesOx", userEmail);
+                        const readingsCollectionRef = collection(emailDocRef, "Readings");
+
+                        // Format the time correctly
+                        const formattedTime = new Intl.DateTimeFormat('en-US', {
+                            timeZone: 'Asia/Manila',
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            second: '2-digit'
+                        }).format(new Date());
+
+                        const newReading = {
+                            heartRate: heartRate !== null ? heartRate.toString() : "N/A",
+                            oxygen: spo2 !== null ? spo2.toString() : "N/A",
+                            time: formattedTime,
+                            email: userEmail,
+                        };
+
+                        // Add a new document to the "Readings" subcollection
+                        await addDoc(readingsCollectionRef, newReading);
+                        console.log("Abnormal reading stored in Firestore:", newReading);
+
                     } catch (error) {
-                        console.error("Error storing abnormal reading in Firestore:", error);
+                        console.error("Error storing data in Firestore:", error);
                     }
+                } else {
+                    console.log("Readings are within normal ranges. No storage needed.");
                 }
             } else {
                 console.log("Email does not match in Realtime Database.");
@@ -523,7 +560,95 @@ async function checkEmailInRealtimeDatabase() {
     });
 }
 
+
+
 // Call the function once to set up the real-time listener
 checkEmailInRealtimeDatabase();
 // Set an interval to check every half-second
 setInterval(checkEmailInRealtimeDatabase, 500);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+async function loadAbnormalReadings() {
+    const firestore = getFirestore();
+    const userEmail = sessionStorage.getItem('healthEmail');
+
+    if (!userEmail) {
+        console.log("No user email found in session storage.");
+        document.querySelector(".abnormal-readings").innerHTML = "<p>No user email found.</p>";
+        return;
+    }
+
+    console.log(`Loading abnormal readings for: ${userEmail}`);
+
+    try {
+        // Reference to the user's document and the "Readings" subcollection
+        const emailDocRef = doc(firestore, "AbnoRatesOx", userEmail);
+        const readingsCollectionRef = collection(emailDocRef, "Readings");
+
+        // Get all readings
+        const querySnapshot = await getDocs(readingsCollectionRef);
+
+        const tableBody = document.querySelector(".readings-table tbody");
+        tableBody.innerHTML = ""; // Clear any existing rows
+
+        if (querySnapshot.empty) {
+            console.log("No readings found.");
+            tableBody.innerHTML = "<tr><td colspan='4'>No abnormal readings found.</td></tr>";
+            return;
+        }
+
+        // Iterate through each document in the "Readings" subcollection
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+
+            // Create a single row with heart rate, oxygen level, and time
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td><strong>Heart Rate & Oxygen</strong></td>
+                <td><h4>${data.heartRate ? `${data.heartRate} bpm` : "N/A"} | ${data.oxygen ? `${data.oxygen}%` : "N/A"}</h4></td>
+                <td>${data.time}</td>
+                <td>
+                    ${
+                        data.heartRate && (data.heartRate < 60 || data.heartRate > 100)
+                            ? "Abnormal heart rate detected."
+                            : ""
+                    }
+                    ${
+                        data.oxygen && (data.oxygen < 90 || data.oxygen > 100)
+                            ? " Abnormal oxygen level detected."
+                            : ""
+                    }
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        console.log("Abnormal readings loaded successfully.");
+
+    } catch (error) {
+        console.error("Error loading abnormal readings:", error);
+        document.querySelector(".abnormal-readings").innerHTML = "<p>Error loading abnormal readings.</p>";
+    }
+}
+
+// Call the function when the page loads
+document.addEventListener("DOMContentLoaded", loadAbnormalReadings);
