@@ -551,11 +551,11 @@ async function checkEmailInRealtimeDatabase() {
                 }
             } else {
                 console.log("Email does not match in Realtime Database.");
-                document.getElementById("signInMessage").innerText = "Email mismatch.";
+                document.getElementById("signInMessage").innerText = "";
             }
         } else {
             console.log("No email found in Realtime Database.");
-            document.getElementById("signInMessage").innerText = "Email not found.";
+            document.getElementById("signInMessage").innerText = "";
         }
     });
 }
