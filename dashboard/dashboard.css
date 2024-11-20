@@ -521,41 +521,58 @@ h2 {
 	}
 	
 	.abnormal-readings {
-	    margin: 20px 0;
-	    font-family: Arial, sans-serif;
+		margin: 20px 0;
+		font-family: Arial, sans-serif;
 	}
 	
 	.abnormal-readings h3 {
-	    font-size: 1.5em;
-	    color: #333;
+		font-size: 1.8em;
+		color: #333;
+		margin-bottom: 15px;
 	}
 	
-	.readings-list {
-	    list-style-type: none;
-	    padding: 0;
-	    margin: 0;
+	.readings-table {
+		width: 100%;
+		border-collapse: collapse;
+		background: #fff;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		border-radius: 8px;
+		overflow: hidden;
 	}
 	
-	.readings-list li {
-	    background: #f9f9f9;
-	    border: 1px solid #ddd;
-	    border-radius: 5px;
-	    padding: 15px;
-	    margin-bottom: 15px;
-	    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	.readings-table th, .readings-table td {
+		padding: 15px;
+		text-align: left;
+		border-bottom: 1px solid #ddd;
 	}
 	
-	.readings-list h4 {
-	    margin: 0;
-	    color: #ff5722;
-	    font-size: 1.2em;
+	.readings-table th {
+		background: #ff5722;
+		color: #fff;
+		font-size: 1.1em;
+		text-transform: uppercase;
 	}
 	
-	.readings-list p {
-	    margin: 5px 0;
-	    color: #555;
+	.readings-table tr:nth-child(even) {
+		background: #f9f9f9;
 	}
 	
-	.readings-list strong {
-	    color: #333;
+	.readings-table tr:hover {
+		background: #f1f1f1;
 	}
+	
+	.readings-table td h4 {
+		margin: 0;
+		color: #ff5722;
+		font-size: 1.1em;
+	}
+	
+	.readings-table td {
+		font-size: 0.95em;
+		color: #555;
+	}
+	
+	.readings-table td strong {
+		color: #333;
+	}
+	
