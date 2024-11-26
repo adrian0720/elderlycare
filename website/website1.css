@@ -9,8 +9,7 @@
 .header {
   min-height: 100vh;
   width: 100%;
-  background: linear-gradient(to bottom, rgba(205, 39, 138, 0.6), rgba(0, 0, 0, 0.859)), url('background2.jpg') no-repeat center center fixed;
-  background-size: cover;
+  background: linear-gradient(to bottom, rgba(134, 146, 247, 0.6), rgba(0, 0, 0, 0.859)), url('background2.jpg') no-repeat center center fixed;background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -224,7 +223,7 @@
 .about-us {
   min-height: calc(99.9vh - 45px); /* Adjust to account for footer height */
   width: 100%;
-  background: linear-gradient(to bottom, rgba(205, 39, 138, 0.6), rgba(0, 0, 0, 0.859)), url('background2.jpg') no-repeat center center fixed;
+  background: linear-gradient(to bottom, rgba(134, 146, 247, 0.6), rgba(0, 0, 0, 0.859)), url('background2.jpg') no-repeat center center fixed;background-size: cover;
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -691,7 +690,7 @@ h3 {
   position: relative;
   min-height: 100vh; /* Reduced height for the section */
   width: 100%;
-  background: linear-gradient(to bottom, rgba(205, 39, 138, 0.6), rgba(0, 0, 0, 0.859)), url('background2.jpg') no-repeat center center fixed;
+  background: linear-gradient(to bottom, rgba(134, 146, 247, 0.6), rgba(0, 0, 0, 0.859)), url('background2.jpg') no-repeat center center fixed;background-size: cover;
   background-size: cover;
   color: #fff;
   padding: 30px 20px; /* Adjusted padding for a more compact look */
