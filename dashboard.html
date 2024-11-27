@@ -57,21 +57,7 @@
                 </div>
             </form>
             <input type="checkbox" id="switch-mode" hidden>
-            <button 
-            type="button" 
-            id="downloadButton" 
-            onclick="downloadFile()" 
-            style="
-                width: 150px; 
-                height: 40px; 
-                font-size: 18px; 
-                line-height: 20px; 
-                display: inline-block; 
-                text-align: center; 
-                background: #0538b9;
-                cursor: pointer;">
-            Download
-        </button>
+      
         
 
 <h3 id="greeting">Greetings</h3>
@@ -89,7 +75,6 @@
                 "Good Noon!"
             ];
 
-         
             // Additional random phrases
             const extraGreetings = [
                 "Checking pulse...",
@@ -100,8 +85,6 @@
                 "Feeling good?",
                 "Any plans for today?"
             ];
-
-          
 
             // Select a time-based greeting
             let greeting;
@@ -125,6 +108,22 @@
         // Call the function when the page loads
         updateGreeting();
     </script>
+
+<button 
+type="button" 
+id="downloadButton" 
+onclick="downloadFile()" 
+style="
+    width: 150px; 
+    height: 40px; 
+    font-size: 18px; 
+    line-height: 20px; 
+    display: inline-block; 
+    text-align: center; 
+    background: #0538b9;
+    cursor: pointer;">
+Download
+</button>
             </nav>
             <main id="main-content">
             <div class="head-title">
@@ -159,7 +158,9 @@
                     </form>
                 </div>
             </div>
-             <ul class="box-info">
+
+
+            <ul class="box-info">
                 <li style="background-color: #8692f7; padding: 10px; margin-bottom: 10px; border-radius: 8px;">
                     <i class="fas fa-user"></i>
                     <span class="text">
@@ -193,6 +194,8 @@
                     </span>
                 </li>
             </ul>
+            
+
               
             <div class="graph-container">
 
@@ -390,7 +393,6 @@
 
 
 
-   
     <div id="about-section" class="content-section">
         <h1>About Us</h1>
         <div class="content">
@@ -409,7 +411,6 @@
             
         </div>
     </div>
-
 
 
     
