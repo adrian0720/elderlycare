@@ -497,51 +497,6 @@
   animation-play-state: running;
 }
 
-.card2 {
-  width: 370px;
-  height: 400px;
-  padding: 1em 2em;
-  background: black; /* Initial background color */
-  font-size: 18px;
-  font-weight: 500;
-  color: #fff;
-  position: relative;
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; /* Add transition for background */
-  margin: 20px;
-}
-
-.card2:hover {
-  background: url('pulse.jpeg') no-repeat center center fixed; /* Background image on hover */
-  background-size: cover; /* Cover the entire card */
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
-}
-
-.card2::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  padding: 4px;
-  border-radius: 15px;
-  background-image: conic-gradient(#488cfb, #17caac, #1486f1, #ec1f1f, #9154f3, #e91632, #488cfb);
-  mask-image: linear-gradient(#000, #000), linear-gradient(#000, #000);
-  mask-origin: content-box, padding-box;
-  mask-clip: content-box, padding-box;
-  mask-composite: exclude;
-  filter: hue-rotate(0);
-  animation: rotate-hue 1.5s linear infinite;
-  animation-play-state: paused;
-  z-index: -1;
-}
-
-.card2:hover::after {
-  animation-play-state: running;
-}
 
 
 h3 {
