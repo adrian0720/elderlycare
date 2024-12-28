@@ -50,11 +50,17 @@
     </button>
 </a>
 
-<style>
-    button:hover {
-        background-color: darkred;
-    }
-</style>
+<script>
+    // Add hover effect
+    document.querySelectorAll('button').forEach(button => {
+        button.addEventListener('mouseover', () => {
+            button.style.backgroundColor = 'darkred';
+        });
+        button.addEventListener('mouseout', () => {
+            button.style.backgroundColor = 'red';
+        });
+    });
+</script>
 
 
                   
