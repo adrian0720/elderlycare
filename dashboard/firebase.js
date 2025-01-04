@@ -455,7 +455,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Constants for abnormal thresholds
 const HEART_RATE_LOW = 60;
 const HEART_RATE_HIGH = 100;
-const SPO2_LOW = 90;
+const SPO2_LOW = 90;    
 const SPO2_HIGH = 100;
 
 // Variables to track the last stored values
@@ -487,8 +487,8 @@ async function checkEmailInRealtimeDatabase() {
             if (data === userEmail) {
                 console.log("Email found and matched in Realtime Database.");
 
-                const heartRateRef = get(ref(db, "sensorReading/heartRate"));
-                const spo2Ref = get(ref(db, "sensorReading/oximeter"));
+                const heartRateRef = ref(db, "sensorReading/heartRate");
+                const spo2Ref = ref(db, "sensorReading/oximeter");
 
                 const heartRateSnapshot = await get(heartRateRef);
                 const spo2Snapshot = await get(spo2Ref);
