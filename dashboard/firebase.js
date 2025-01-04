@@ -487,8 +487,8 @@ async function checkEmailInRealtimeDatabase() {
             if (data === userEmail) {
                 console.log("Email found and matched in Realtime Database.");
 
-                const heartRateRef = ref(db, "sensorReading/heartRate");
-                const spo2Ref = ref(db, "sensorReading/oximeter");
+                const heartRateRef = get(ref(db, "sensorReading/heartRate"));
+                const spo2Ref = get(ref(db, "sensorReading/oximeter"));
 
                 const heartRateSnapshot = await get(heartRateRef);
                 const spo2Snapshot = await get(spo2Ref);
