@@ -476,7 +476,7 @@ async function checkEmailInRealtimeDatabase() {
 
     console.log(`Checking email from sessionStorage: '${userEmail}'`);
 
-    const healthDataEmailRef = ref(db, "sensorReading/email/Value");
+    const healthDataEmailRef = ref(db, "sensorReading/email");
 
     // Set up a listener for changes to the email value
     onValue(healthDataEmailRef, async (snapshot) => {
@@ -487,8 +487,8 @@ async function checkEmailInRealtimeDatabase() {
             if (data === userEmail) {
                 console.log("Email found and matched in Realtime Database.");
 
-                const heartRateRef = ref(db, "sensorReading/heartRate/value");
-                const spo2Ref = ref(db, "sensorReading/oximeter/value");
+                const heartRateRef = ref(db, "sensorReading/heartRate");
+                const spo2Ref = ref(db, "sensorReading/oximeter");
 
                 const heartRateSnapshot = await get(heartRateRef);
                 const spo2Snapshot = await get(spo2Ref);
